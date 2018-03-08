@@ -1,0 +1,49 @@
+## Configuration Nginx
+web:
+  restart: always
+  image: nginx
+  ports:
+    - "80:80"
+  volumes:
+    - /var/www/docker/nginx:/etc/nginx/conf.d
+    - /var/www:/var/www/local.dev
+  links:
+    - php:php
+    - maildev:maildev
+
+## Configuration PHP
+php:
+  build: php
+  restart: always
+  volumes:
+    - /var/www:/var/www/local.dev
+    - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
+  links:
+    - db:db
+
+## Configuration MySQL
+db:
+  image: mysql
+  restart: always
+  volumes:
+    - /var/lib/boot2docker/mysql:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+
+## Configuration PhpMyAdmin
+phpmyadmin:
+  restart: always
+  image: phpmyadmin/phpmyadmin
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+  links:
+    - db:db
+  ports:
+    - "3000:80"
+
+## Configuration Maildev
+maildev:
+  restart: always
+  image: djfarrelly/maildev
+  ports:
+    - "1080:80"
