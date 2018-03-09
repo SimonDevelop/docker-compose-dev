@@ -1,7 +1,6 @@
-FROM php:7.2-fpm
+FROM php:7.0-fpm
 
 RUN apt-get update && apt-get install -y \
-        git \
         apt-utils \
         libmcrypt-dev \
         libpq-dev \
@@ -23,7 +22,6 @@ RUN apt-get update && apt-get install -y \
         libsnmp-dev \
         libpcre3-dev \
         libtidy-dev \
-        default-libmysqlclient-dev \
         libsqlite3-dev \
         libssl-dev \
         libcurl3-dev \
