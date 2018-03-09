@@ -13,6 +13,10 @@ web:
     - php7.1:php7.1
     - php7.2:php7.2
     - maildev:maildev
+    - mysql:mysql
+    - mongo:mongo
+    - redis:redis
+    - rethinkdb:rethinkdb
 
 ## Configuration PHP 5.6
 php5.6:
@@ -22,7 +26,10 @@ php5.6:
     - /var/www:/var/www/local.dev
     - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
   links:
-    - db:db
+    - mysql:mysql
+    - mongo:mongo
+    - redis:redis
+    - rethinkdb:rethinkdb
 
 ## Configuration PHP 7.0
 php7.0:
@@ -32,7 +39,10 @@ php7.0:
     - /var/www:/var/www/local.dev
     - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
   links:
-    - db:db
+    - mysql:mysql
+    - mongo:mongo
+    - redis:redis
+    - rethinkdb:rethinkdb
 
 ## Configuration PHP 7.1
 php7.1:
@@ -42,7 +52,10 @@ php7.1:
     - /var/www:/var/www/local.dev
     - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
   links:
-    - db:db
+    - mysql:mysql
+    - mongo:mongo
+    - redis:redis
+    - rethinkdb:rethinkdb
 
 ## Configuration PHP 7.2
 php7.2:
@@ -52,10 +65,13 @@ php7.2:
     - /var/www:/var/www/local.dev
     - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
   links:
-    - db:db
+    - mysql:mysql
+    - mongo:mongo
+    - redis:redis
+    - rethinkdb:rethinkdb
 
 ## Configuration MySQL
-db:
+mysql:
   image: mysql
   restart: always
   volumes:
@@ -65,6 +81,36 @@ db:
   ports:
     - "3306:3306"
 
+## Configuration Mongo
+mongo:
+  image: mongo
+  restart: always
+  volumes:
+    - /var/www/docker/mongo:/data/db
+  ports:
+    - "27017:27017"
+
+## Configuration Redis
+redis:
+  image: redis
+  restart: always
+  volumes:
+    - /var/www/docker/redis.conf:/usr/local/etc/redis/redis.conf
+    - /var/www/docker/redis/data:/data
+  ports:
+    - "6379:6379"
+
+## Configuration RethinkDB
+rethinkdb:
+  image: rethinkdb
+  restart: always
+  volumes:
+    - /var/www/docker/rethinkdb:/data
+  ports:
+    - "29015:29015"
+    - "28015:28015"
+    - "8000:8080"
+
 ## Configuration PhpMyAdmin
 phpmyadmin:
   restart: always
@@ -72,7 +118,7 @@ phpmyadmin:
   environment:
     - MYSQL_ROOT_PASSWORD=root
   links:
-    - db:db
+    - mysql:db
   ports:
     - "3000:80"
 
@@ -82,3 +128,4 @@ maildev:
   image: djfarrelly/maildev
   ports:
     - "1080:80"
+    - "1025:25"
