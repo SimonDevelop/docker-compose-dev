@@ -5,7 +5,7 @@ Voici ma configuration d'un environment de developpement web basé sur docker. C
 ### Environnement
 - nginx
 - mysql
-- php 7.2
+- php 5.6/7.0/7.1/7.2
 - phpmyadmin
 - maildev
 
@@ -29,7 +29,7 @@ docker-compose stop
 
 ### Commandes php et composer
 
-Copier les lignes du fichier `.bashrc` dans le votre.<br>
+Copier les lignes du fichier `.bashrc` dans le votre sans oublié de préciser les <id> des containers php.<br>
 Pensez à configurer votre accès aux commandes docker sans `sudo`
 ```bash
 sudo usermod -aG docker $USER
