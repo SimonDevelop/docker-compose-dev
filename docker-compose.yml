@@ -62,6 +62,8 @@ db:
     - /var/www/docker/mysql:/var/lib/mysql
   environment:
     - MYSQL_ROOT_PASSWORD=root
+  ports:
+    - "3306:3306"
 
 ## Configuration PhpMyAdmin
 phpmyadmin:
