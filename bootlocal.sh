@@ -5,6 +5,8 @@ mkdir /var/www/docker
 cp php/php.ini /var/www/docker/
 cp php/index.php /var/www/
 
+cp redis/redis.conf /var/www/docker/
+
 mkdir /var/www/docker/nginx
 cp nginx/*.conf /var/www/docker/nginx/
 
