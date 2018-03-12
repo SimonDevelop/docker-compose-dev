@@ -4,7 +4,7 @@ Voici ma configuration d'un environment de developpement web basé sur docker. C
 
 ### Environnement
 - nginx
-- php 5.6/7.0/7.1/7.2
+- php 5.4/5.5/5.6/7.0/7.1/7.2
 - phpmyadmin
 - mysql
 - mongo
@@ -30,15 +30,19 @@ Pour stoper les containers de la composition :
 docker-compose stop
 ```
 
-### Commandes php et composer
-
-Copier les lignes du fichier `.bashrc` dans le votre sans oublié de préciser les <id> des containers php.<br>
-Pensez à configurer votre accès aux commandes docker sans `sudo`
+### Commandes terminal
+Copier les lignes du fichier `.bashrc` dans le votre sans oublié de préciser les `id` des containers cibles (php, mysql...).<br>
+Les version php des containers sont executés à partir du dossier `/var/www`, si vous avez besoin d'executer des scripts demandant la racine (doctrine par exemple), il faudra alors re-builder vos versions php en précisant le chemin absolut du projet en question.<br>
+Pensez aussi à configurer votre accès aux commandes docker sans `sudo`
 ```bash
 sudo usermod -aG docker $USER
 sudo groupadd docker
 sudo gpasswd -a $USER docker
 newgrp docker
+```
+à chaque `composer install`, il faudra redéfinir les droits des dossiers/fichiers composer, car ces deniers appartiendrons à l'utilisateur `root`.
+```bash
+sudo chown -R userunix:groupunix /var/www
 ```
 
 ### /etc/hosts
@@ -53,6 +57,7 @@ newgrp docker
 ```
 127.0.0.1:3000
 Host : mysql
+Port : 3306
 Login : root
 Password : root
 ```
@@ -67,6 +72,8 @@ db.createUser({ user: 'root', pwd: 'root', roles: [ { role: "readWrite", db: "de
 ```
 Pour obtenir ceci :
 ```
+Host : mongo
+Port : 27017
 Database : develop
 Login : root
 Password : root
@@ -80,7 +87,21 @@ r.db('rethinkdb').table('users').filter({id:"admin"}).update({password: "admin"}
 ```
 Pour obtenir ceci :
 ```
+Host : rethinkdb
+Port : 29015 et 28015
 Database : rethinkdb
 Login : admin
 Password : admin
+```
+
+### Redis
+```
+Host : redis
+Port : 6379
+```
+
+### Maildev
+```
+Webmail : 127.0.0.1:1080
+Smtp : 127.0.0.1:1025
 ```

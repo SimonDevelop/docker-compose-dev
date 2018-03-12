@@ -8,11 +8,39 @@ web:
     - /var/www/docker/nginx:/etc/nginx/conf.d
     - /var/www:/var/www/local.dev
   links:
+    - php5.4:php5.4
+    - php5.5:php5.5
     - php5.6:php5.6
     - php7.0:php7.0
     - php7.1:php7.1
     - php7.2:php7.2
     - maildev:maildev
+    - mysql:mysql
+    - mongo:mongo
+    - redis:redis
+    - rethinkdb:rethinkdb
+
+## Configuration PHP 5.4
+php5.4:
+  build: php5.4
+  restart: always
+  volumes:
+    - /var/www:/var/www/local.dev
+    - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
+  links:
+    - mysql:mysql
+    - mongo:mongo
+    - redis:redis
+    - rethinkdb:rethinkdb
+
+## Configuration PHP 5.5
+php5.5:
+  build: php5.5
+  restart: always
+  volumes:
+    - /var/www:/var/www/local.dev
+    - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
+  links:
     - mysql:mysql
     - mongo:mongo
     - redis:redis
