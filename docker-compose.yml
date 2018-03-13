@@ -111,8 +111,15 @@ mysql:
 
 ## Configuration Mongo
 mongo:
-  image: mongo
+  image: aashreys/mongo-auth:latest
   restart: always
+  environment:
+    - AUTH=yes
+    - MONGODB_ADMIN_USER=admin
+    - MONGODB_ADMIN_PASS=admin
+    - MONGODB_APPLICATION_DATABASE=develop
+    - MONGODB_APPLICATION_USER=test
+    - MONGODB_APPLICATION_PASS=test
   volumes:
     - /var/www/docker/mongo:/data/db
   ports:

@@ -63,20 +63,21 @@ Password : root
 ```
 
 ### Mongo
-Effectuer ces lignes de commandes pour créer la base et l'utilisateur :
-```
-mongod
-use develop
-db.develop.save({})
-db.createUser({ user: 'root', pwd: 'root', roles: [ { role: "readWrite", db: "develop" } ] });
-```
-Pour obtenir ceci :
+Identifiants mongo :
 ```
 Host : mongo
 Port : 27017
 Database : develop
-Login : root
-Password : root
+Login : test
+Password : test
+et
+Database : admin
+Login : admin
+Password : admin
+```
+Pour se connecter en ligne de commande :
+```
+mongod admin -u <username> -p '<password>' --authenticationDatabase <database>
 ```
 
 ### RethinkDB
