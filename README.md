@@ -4,13 +4,17 @@ Voici ma configuration d'un environment de developpement web basé sur docker. C
 
 ### Environnement
 - nginx
-- php 5.4/5.5/5.6/7.0/7.1/7.2
+- php 7.0/7.1/7.2
 - phpmyadmin
 - mysql
 - mongo
 - redis
 - rethinkdb
 - maildev
+- extensions php :
+  - redis
+  - ssh2
+  - swoole  
 
 Pour que cette configuration fonctionne il est impératif que vos fichiers web soit à la racine de `/var/www`
 
