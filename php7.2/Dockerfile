@@ -45,23 +45,11 @@ RUN docker-php-ext-install mbstring curl json intl gd xml xmlrpc zip bz2 opcache
 && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 && docker-php-ext-install gd
 
-ARG PHALCON_VERSION=3.3.1
-ARG PHALCON_EXT_PATH=php7/64bits
-
-RUN set -xe && \
-        # Compile Phalcon
-        curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \
-        tar xzf ${PWD}/v${PHALCON_VERSION}.tar.gz && \
-        docker-php-ext-install -j $(getconf _NPROCESSORS_ONLN) ${PWD}/cphalcon-${PHALCON_VERSION}/build/${PHALCON_EXT_PATH} && \
-        # Remove all temp files
-        rm -r \
-            ${PWD}/v${PHALCON_VERSION}.tar.gz \
-            ${PWD}/cphalcon-${PHALCON_VERSION}
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
 
 RUN pecl install redis
-RUN pecl install xdebug
-RUN pecl install mongodb
-RUN docker-php-ext-enable redis xdebug mongodb
+RUN pecl install swoole
 
 RUN git clone https://github.com/php/pecl-networking-ssh2 --depth=1 && \
     cd pecl-networking-ssh2 && \
