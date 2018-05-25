@@ -4,7 +4,7 @@ Voici ma configuration d'un environment de developpement web basé sur docker. C
 
 ### Environnement
 - nginx
-- php 7.0/7.1/7.2
+- php 7.1/7.2
 - phpmyadmin
 - mysql
 - mongo
