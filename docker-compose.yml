@@ -3,10 +3,10 @@ web:
   restart: always
   image: nginx
   ports:
-    - "8080:80"
+    - "8888:80"
   volumes:
     - /var/www/docker/nginx:/etc/nginx/conf.d
-    - /var/www/myprojet:/var/www/local.dev
+    - /var/www:/var/www/local.dev
   links:
     - php7.1:php7.1
     - php7.2:php7.2
@@ -21,7 +21,7 @@ php7.1:
   build: php7.1
   restart: always
   volumes:
-    - /var/www/myprojet:/var/www/local.dev
+    - /var/www:/var/www/local.dev
     - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
   links:
     - maildev:maildev
@@ -35,7 +35,7 @@ php7.2:
   build: php7.2
   restart: always
   volumes:
-    - /var/www/myprojet:/var/www/local.dev
+    - /var/www:/var/www/local.dev
     - /var/www/docker/php.ini:/usr/local/etc/php/php.ini
   links:
     - maildev:maildev

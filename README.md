@@ -16,7 +16,7 @@ Voici ma configuration d'un environment de developpement web basé sur docker. C
   - ssh2
   - swoole  
 
-Pour que cette configuration fonctionne il est impératif que votre projet web soit à la racine de `/var/www/myprojet`
+Pour que cette configuration fonctionne il est impératif que vos fichiers web soit à la racine de `/var/www`
 
 Préparer les dossiers/fichiers :
 ```bash
@@ -36,7 +36,7 @@ docker-compose stop
 
 ### Commandes terminal
 Copier les lignes du fichier `.bashrc` dans le votre sans oublié de préciser les `id` des containers cibles (php, mysql...).<br>
-Les version php des containers sont executés à partir du dossier `/var/www/myprojet`, si vous avez besoin d'executer des scripts demandant la racine (doctrine par exemple), il faudra alors re-builder vos versions php en précisant le chemin absolut du projet en question.<br>
+Les version php des containers sont executés à partir du dossier `/var/www`, si vous avez besoin d'executer des scripts demandant la racine (doctrine par exemple), il faudra alors re-builder vos versions php en précisant le chemin absolut du projet en question.<br>
 Pensez aussi à configurer votre accès aux commandes docker sans `sudo`
 ```bash
 sudo usermod -aG docker $USER
