@@ -16,7 +16,7 @@ Voici ma configuration d'un environment de developpement web basé sur docker. C
   - ssh2
   - swoole  
 
-Pour que cette configuration fonctionne il est impératif que vos fichiers web soit à la racine de `/var/www`
+Pour que cette configuration fonctionne il est impératif que votre projet web soit à la racine de `/var/www/myprojet`
 
 Préparer les dossiers/fichiers :
 ```bash
