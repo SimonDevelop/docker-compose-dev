@@ -36,7 +36,7 @@ docker-compose stop
 
 ### Commandes terminal
 Copier les lignes du fichier `.bashrc` dans le votre sans oublié de préciser les `id` des containers cibles (php, mysql...).<br>
-Les version php des containers sont executés à partir du dossier `/var/www`, si vous avez besoin d'executer des scripts demandant la racine (doctrine par exemple), il faudra alors re-builder vos versions php en précisant le chemin absolut du projet en question.<br>
+Les version php des containers sont executés à partir du dossier `/var/www/myprojet`, si vous avez besoin d'executer des scripts demandant la racine (doctrine par exemple), il faudra alors re-builder vos versions php en précisant le chemin absolut du projet en question.<br>
 Pensez aussi à configurer votre accès aux commandes docker sans `sudo`
 ```bash
 sudo usermod -aG docker $USER
