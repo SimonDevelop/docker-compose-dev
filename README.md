@@ -4,17 +4,13 @@ Voici ma configuration d'un environment de developpement web basé sur docker. C
 
 ### Environnement
 - nginx
-- php 7.1/7.2
+- php 7.2/7.3
 - phpmyadmin
 - mysql
 - mongo
 - redis
 - rethinkdb
 - maildev
-- extensions php :
-  - redis
-  - ssh2
-  - swoole  
 
 Pour que cette configuration fonctionne il est impératif que vos fichiers web soit à la racine de `/var/www`
 
@@ -55,6 +51,7 @@ sudo chown -R userunix:groupunix /var/www
 0.0.0.0         rethinkdb
 0.0.0.0         mongo
 0.0.0.0         redis
+0.0.0.0         maildev
 ```
 
 ### PhpMyAdmin/Mysql
@@ -107,6 +104,6 @@ Port : 6379
 
 ### Maildev
 ```
-Webmail : 127.0.0.1:1080
-Smtp : 127.0.0.1:1025
+Webmail : maildev:1080
+Smtp : maildev:1025
 ```
