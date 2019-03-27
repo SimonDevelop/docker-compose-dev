@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
         libbz2-dev \
         libgmp3-dev \
         libldap2-dev \
+        libzip-dev \
         unixodbc-dev \
         libsqlite3-dev \
         libaspell-dev \
